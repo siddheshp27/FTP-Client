@@ -2,7 +2,6 @@
   width: 200px;
   height: 200px;
   padding: 20px;
-  margin: 25px;
   background-color: #e9eaea;
   border: 3px solid grey;
   border-radius: 5px;
@@ -11,6 +10,10 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.parentcontainer {
+  margin: 25px;
 }
 
 .fileName {
@@ -30,4 +33,11 @@
 .directoryConatiner {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.copybutton {
+  position: relative;
+  left: 161px;
+  top: 4px;
 }

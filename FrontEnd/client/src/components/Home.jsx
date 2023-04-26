@@ -98,35 +98,54 @@ export default function Home({
     const folderName = prompt(
       "Enter Name of the Folder/File that is to be deleted"
     );
-    console.log(String(folderName));
+    if (folderName) {
+      console.log(String(folderName));
 
-    folders.forEach((folder) => {
-      if (folder == folderName) {
-        console.log("yee");
-        const data = { ...info, folderName: folderName };
-        axios
-          .post(`${url}/removedirectory`, JSON.stringify(data), {
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-          })
-          .then((res) => {
-            if (res.status) {
-              console.log(res.data);
-              return res.data;
-            }
-          })
-          ?.then(({ files, folders }) => {
-            setInfo(data);
-            setCurrFiles({ files, folders });
-          });
-      }
-    });
-    files.forEach((file) => {
-      if (file == folderName) {
-        console.log("yeeyee");
-      }
-    });
+      folders.forEach((folder) => {
+        if (folder == folderName) {
+          console.log("yee");
+          const data = { ...info, folderName: folderName };
+          axios
+            .post(`${url}/removedirectory`, JSON.stringify(data), {
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+            .then((res) => {
+              if (res.status) {
+                console.log(res.data);
+                return res.data;
+              }
+            })
+            ?.then(({ files, folders }) => {
+              setInfo(data);
+              setCurrFiles({ files, folders });
+            });
+        }
+      });
+      files.forEach((file) => {
+        if (file == folderName) {
+          console.log("yeeyee");
+          const data = { ...info, folderName: folderName };
+          axios
+            .post(`${url}/removefile`, JSON.stringify(data), {
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+            .then((res) => {
+              if (res.status) {
+                console.log(res.data);
+                return res.data;
+              }
+            })
+            ?.then(({ files, folders }) => {
+              setInfo(data);
+              setCurrFiles({ files, folders });
+            });
+        }
+      });
+    }
   }
 
   console.log(info);
@@ -137,21 +156,19 @@ export default function Home({
       <button onClick={fileSubmitHandle}>Upload File</button>
       <button onClick={handleDelete}>Delete</button>
       <div className="directoryConatiner">
-        <div className="container" onClick={eventHandle}>
-          <div className="fileIcon">
-            <img src="prev.png" className="imgsize1" />
-          </div>
-          <div className="fileName">
-            <h6 className="fileName">Prev</h6>
+        <div className="parentcontainer">
+          <div className="container" onClick={eventHandle}>
+            <div className="fileIcon">
+              <img src="prev.png" className="imgsize1" />
+            </div>
+            <div className="fileName">
+              <h6 className="fileName">Prev</h6>
+            </div>
           </div>
         </div>
         {folder}
         {file}
       </div>
-      <form onSubmit={fileSubmitHandle}>
-        <input type="text" name="filePath" />
-        <button>submit</button>
-      </form>
     </div>
   );
 }
