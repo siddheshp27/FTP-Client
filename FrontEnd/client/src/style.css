@@ -1,0 +1,33 @@
+.container {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  margin: 25px;
+  background-color: #e9eaea;
+  border: 3px solid grey;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.fileName {
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+}
+
+.imgsize {
+  height: 96px;
+  width: 96px;
+}
+.imgsize1 {
+  height: 67px;
+  width: 83px;
+}
+
+.directoryConatiner {
+  display: flex;
+  flex-direction: row;
+}
