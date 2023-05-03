@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>HI</h1>
+      <h1 className="text-2xl font-bold text-center">FTP Client Application</h1>
       {page === "login" ? (
         <Login
           url={url}

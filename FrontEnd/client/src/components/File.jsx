@@ -45,7 +45,7 @@ export default function File({ url, name, info }) {
   }
 
   return (
-    <div className="parentcontainer">
+    <div className="parentcontainer relative">
       <div className="container" onClick={eventHandle}>
         <div className="fileIcon">
           <img src="/file.png" className="imgsize" />
@@ -54,8 +54,11 @@ export default function File({ url, name, info }) {
           <h6 className="fileName">{name}</h6>
         </div>
       </div>
-      <button className="copybutton" onClick={handleName}>
-        copy name
+      <button
+        className="text-white items-end absolute bottom-0 right-0 bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-sm mt-1"
+        onClick={handleName}
+      >
+        <img src="/logo.png" className="w-6"></img>
       </button>
     </div>
   );

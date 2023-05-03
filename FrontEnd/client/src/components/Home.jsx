@@ -26,24 +26,27 @@ export default function Home({
     e.preventDefault();
     const filePath = prompt("Enter Path of the File");
     console.log(e);
-    const data = { ...info, filePath: filePath };
-    console.log(data);
-    axios
-      .post(`${url}/upload`, JSON.stringify(data), {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-      .then((res) => {
-        if (res.status) {
-          console.log(res.data);
-          return res.data;
-        }
-      })
-      ?.then(({ files, folders }) => {
-        setInfo(data);
-        setCurrFiles({ files, folders });
-      });
+    if (filePath) {
+      const data = { ...info, filePath: filePath };
+      console.log(data);
+      axios
+        .post(`${url}/upload`, JSON.stringify(data), {
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+        .then((res) => {
+          if (res.status) {
+            console.log(res.data);
+            alert("File Uploaded Successfully");
+            return res.data;
+          }
+        })
+        ?.then(({ files, folders }) => {
+          setInfo(data);
+          setCurrFiles({ files, folders });
+        });
+    }
   }
 
   function eventHandle(e) {
@@ -151,10 +154,27 @@ export default function Home({
   console.log(info);
   return (
     <div>
-      <h1>logged in</h1>
-      <button onClick={createNewFolder}>New Folder</button>
-      <button onClick={fileSubmitHandle}>Upload File</button>
-      <button onClick={handleDelete}>Delete</button>
+      <h1 className="text-2xl font-bold text-start ml-4">
+        Current Dir : /{info.currDir}
+      </h1>
+      <button
+        onClick={createNewFolder}
+        className="text-white mr-4 items-end bg-indigo-500 border-0 py-2 px-4 ml-4 focus:outline-none hover:bg-indigo-600 rounded text-sm mt-1"
+      >
+        New Folder
+      </button>
+      <button
+        onClick={fileSubmitHandle}
+        className="text-white mr-4 items-end bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm mt-1"
+      >
+        Upload File
+      </button>
+      <button
+        onClick={handleDelete}
+        className="text-white mr-4 items-end bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm mt-1"
+      >
+        Delete
+      </button>
       <div className="directoryConatiner">
         <div className="parentcontainer">
           <div className="container" onClick={eventHandle}>
